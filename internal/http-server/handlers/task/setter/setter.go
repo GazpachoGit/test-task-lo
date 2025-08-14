@@ -1,4 +1,4 @@
-package set
+package setter
 
 import (
 	"log/slog"

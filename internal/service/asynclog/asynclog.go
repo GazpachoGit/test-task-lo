@@ -18,9 +18,10 @@ type AsyncLog struct {
 	wg      *sync.WaitGroup
 }
 
-func NewAsyncLog(log *slog.Logger, size int) *AsyncLog {
+func NewAsyncLog(handler slog.Handler, size int) *AsyncLog {
 	ch := make(chan LogMessage, size)
 	wg := &sync.WaitGroup{}
+	log := slog.New(handler)
 
 	return &AsyncLog{
 		log:     log,
