@@ -20,29 +20,29 @@ type AsyncLog struct {
 
 func NewAsyncLog(handler slog.Handler, size int) *AsyncLog {
 	ch := make(chan LogMessage, size)
-	wg := &sync.WaitGroup{}
 	log := slog.New(handler)
 
 	return &AsyncLog{
 		log:     log,
 		msgChan: ch,
-		wg:      wg,
 	}
 }
 
-func StartLogger(al *AsyncLog) {
+func StartLogger(al *AsyncLog, wg *sync.WaitGroup) {
+	al.wg = wg
 	al.wg.Add(1)
 	go func() {
+		defer al.wg.Done()
 		for msg := range al.msgChan {
 			al.log.Log(context.Background(), msg.Level, msg.Msg, msg.Args...)
 		}
-		al.wg.Done()
+
 	}()
 }
 
 func StopLogger(al *AsyncLog) {
+
 	close(al.msgChan)
-	al.wg.Wait()
 }
 
 func (al *AsyncLog) Info(msg string, args ...any) {

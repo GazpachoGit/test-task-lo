@@ -1,4 +1,4 @@
-package get
+package gettermulty
 
 import (
 	"errors"
@@ -21,7 +21,7 @@ type TaskGetter interface {
 	GetTasks(status string) ([]model.Task, error)
 }
 
-func NewGetMult(log logext.Logger, taskGetter TaskGetter) http.HandlerFunc {
+func New(log logext.Logger, taskGetter TaskGetter) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.task.get-all.new"
 

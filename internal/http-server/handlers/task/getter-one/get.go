@@ -1,4 +1,4 @@
-package get
+package getterone
 
 import (
 	"errors"
@@ -22,7 +22,7 @@ type TaskGetter interface {
 	GetTask(id string) (model.Task, error)
 }
 
-func NewGetOne(log logext.Logger, taskGetter TaskGetter) http.HandlerFunc {
+func New(log logext.Logger, taskGetter TaskGetter) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.task.get-one.new"
 
