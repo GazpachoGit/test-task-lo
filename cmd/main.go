@@ -49,7 +49,7 @@ func main() {
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
 	sign := <-stop
 
-	//gracefull stop
+	//graceful stop
 	log.Info("Received shutdown signal", slog.String("signal", sign.String()))
 	stopHTTPServer(srv, log)
 	log.Info("Stopping logger")

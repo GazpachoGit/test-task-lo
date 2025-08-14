@@ -1,6 +1,6 @@
 # Small task REST API service
 ## Run
-- Install go runtime env
+- Install go dev env
 - Clone the repository
 - Navigate to the repository root folder
 - Start the app:
