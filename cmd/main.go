@@ -22,15 +22,14 @@ import (
 )
 
 func main() {
-	//TODO: add a config file, add log level
-
-	//start async logger
+	//TODO: add a config file, for a log level
 
 	//handler can be replaced with JSON, DB,...
 	handler := slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})
 
 	log := asynclog.NewAsyncLog(handler, 3)
 	wg := &sync.WaitGroup{}
+	//start async logger
 	asynclog.StartLogger(log, wg)
 	log.Debug("Logger ready")
 
