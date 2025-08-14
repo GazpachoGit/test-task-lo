@@ -22,7 +22,7 @@ import (
 )
 
 func main() {
-	//TODO: add config file, add log level
+	//TODO: add a config file, add log level
 
 	//start async logger
 
@@ -59,6 +59,7 @@ func main() {
 }
 
 func startHTTPServer(router *chi.Mux, wg *sync.WaitGroup, log *asynclog.AsyncLog) *http.Server {
+	//TODO: add a config file
 	srv := &http.Server{
 		Addr:         "localhost:9000",
 		Handler:      router,

@@ -46,6 +46,7 @@ func (s *Storage) GetTask(id string) (model.Task, error) {
 }
 
 func (s *Storage) GetTasks(status string) ([]model.Task, error) {
+	//TODO: add status constraints and validation
 	s.mu.RLock()
 	resp := MapGetValues(s.m, status)
 	s.mu.RUnlock()
